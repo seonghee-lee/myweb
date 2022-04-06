@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/common :: head('Your Story')">
+<head th:replace="/fragments/common :: head('Write Your Story')">
 <!--    &lt;!&ndash; Required meta tags &ndash;&gt;-->
 <!--    <meta charset="utf-8">-->
 <!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
@@ -12,13 +12,25 @@
 </head>
 <body>
     <div th:replace="/fragments/common :: menu-bar"></div>
-    <main class="container">
-        <div class="bg-light p-5 rounded">
-            <h1>Navbar example</h1>
-            <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll, this navbar remains in its original position and moves with the rest of the page.</p>
-            <a class="btn btn-lg btn-primary" href="/docs/5.1/components/navbar/" role="button">View navbar docs &raquo;</a>
-        </div>
-    </main>
+    <div class="container">
+        <h2>하루일기</h2><br>
+        <form th:action="@{/board/form}" th:object=${boards} method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label fs-4">제목</label>
+                <input type="text" th:field="*{title}" class="form-control" id="exampleFormControlInput1" placeholder="">
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label fs-4">내용</label>
+                <textarea class="form-control" th:field="*{content}" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <br>
+            <div class="col-auto">
+                <p class="text-end">
+                    <a type="submit" value="submit" class="btn btn-primary mb-3" th:href="@{/board/list}">저장</a>
+                </p>
+            </div>
+        </form>
+    </div>
 
 
 <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
